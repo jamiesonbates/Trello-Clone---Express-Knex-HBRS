@@ -1,5 +1,5 @@
 <div class="new-list">
-  <form action="/list" method="POST">
+  <form action="/api/list" method="POST">
     <input type="text" name="title" placeholder="Create a list" autocomplete="off" wrap="soft">
     <button type="submit" class="btn list-btn">Create</button>
   </form>
@@ -11,7 +11,7 @@
       <div class="list-header">
         <h2>{{title}}</h2>
 
-        <form action="/list/{{id}}?_method=delete" method="POST">
+        <form action="/api/list/{{id}}?_method=delete" method="POST">
           <button type="submit" class="btn del-btn"><i class="fa fa-trash"></i></button>
         </form>
       </div>
@@ -21,7 +21,7 @@
           <div class="item">
             <li>{{task}}</li>
 
-            <form action="/{{id}}?_method=put" method="POST" class="edit-form hide">
+            <form action="/api/task/{{id}}?_method=put" method="POST" class="edit-form hide">
               <textarea name="task" autocomplete="off" wrap="soft" autofocus>{{task}}</textarea>
               <div class="edit-form-btns">
                 <button type="submit" class="btn save-btn">Save</button>
@@ -29,7 +29,7 @@
               </div>
             </form>
 
-            <form action="/{{id}}?_method=delete" method="POST" class="hide del-form">
+            <form action="/api/task/{{id}}?_method=delete" method="POST" class="hide del-form">
               <button type="submit" class="btn del-btn"><i class="fa fa-trash"></i></button>
             </form>
           </div>
@@ -39,7 +39,7 @@
       <div class="tools">
         <button class="add-item">Add an item...</button>
 
-        <form action="/" method="POST" class="hide">
+        <form action="/api/task" method="POST" class="hide">
           <input type="hidden" name="listId" value="{{id}}">
           <textarea name="task" placeholder="Add item" class="item-to-add" warp="soft" autofocus></textarea>
           <div class="add-form-btns">
