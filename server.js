@@ -23,10 +23,24 @@ app.use(express.static(path.join('public')));
 app.get('/', (req, res, next) => {
   getLists()
     .then((lists) => {
+      console.log(lists);
       res.render('home', { lists });
     })
     .catch((err) => {
       console.error(err);
+      next(err);
+    });
+});
+
+app.post('/list', (req, res, next) => {
+  const title = req.body.title;
+
+  knex('lists')
+    .insert({ title })
+    .then(() => {
+      res.redirect('/');
+    })
+    .catch((err) => {
       next(err);
     });
 });
@@ -42,7 +56,21 @@ app.post('/', (req, res, next) => {
     })
     .catch((err) => {
       next(err);
+    });
+});
+
+app.delete('/list/:id', (req, res, next) => {
+  const listId = req.params.id;
+
+  knex('lists')
+    .del()
+    .where('id', listId)
+    .then(() => {
+      res.redirect('/');
     })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 app.put('/:id', (req, res, next) => {

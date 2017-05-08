@@ -1,37 +1,53 @@
-{{#each lists}}
-  <div class="list">
-    <h2>{{title}}</h2>
-    <ul>
-      {{#each tasks}}
-        <div class="item">
-          <li>{{task}}</li>
+<div class="new-list">
+  <form action="/list" method="POST">
+    <input type="text" name="title" placeholder="Create a list" autocomplete="off" wrap="soft">
+    <button type="submit" class="btn list-btn">Create</button>
+  </form>
+</div>
 
-          <form action="/{{id}}?_method=put" method="POST" class="edit-form hide">
-            <textarea name="task" autocomplete="off" wrap="soft" autofocus>{{task}}</textarea>
-            <div class="edit-form-btns">
-              <button type="submit" class="btn save-btn">Save</button>
-              <button class="exit-btn" id="exit-edit-form"><i class="fa fa-times"></i></button>
-            </div>
-          </form>
+<div class="all-lists">
+  {{#each lists}}
+    <div class="list">
+      <div class="list-header">
+        <h2>{{title}}</h2>
 
-          <form action="/{{id}}?_method=delete" method="POST" class="hide del-form">
-            <button type="submit" class="btn del-btn"><i class="fa fa-trash"></i></button>
-          </form>
-        </div>
-      {{/each}}
-    </ul>
+        <form action="/list/{{id}}?_method=delete" method="POST">
+          <button type="submit" class="btn del-btn"><i class="fa fa-trash"></i></button>
+        </form>
+      </div>
 
-    <div class="tools">
-      <button class="add-item">Add an item...</button>
+      <ul>
+        {{#each tasks}}
+          <div class="item">
+            <li>{{task}}</li>
 
-      <form action="/" method="POST" class="hide">
-        <input type="hidden" name="listId" value="{{id}}">
-        <textarea name="task" placeholder="Add item" class="item-to-add" warp="soft" autofocus></textarea>
-        <div class="add-form-btns">
-          <button type="submit" class="add-btn btn">Add</button>
-          <button class="exit-btn" id="exit-add-form"><i class="fa fa-times"></i></button>
-        </div>
-      </form>
+            <form action="/{{id}}?_method=put" method="POST" class="edit-form hide">
+              <textarea name="task" autocomplete="off" wrap="soft" autofocus>{{task}}</textarea>
+              <div class="edit-form-btns">
+                <button type="submit" class="btn save-btn">Save</button>
+                <button class="exit-btn" id="exit-edit-form"><i class="fa fa-times"></i></button>
+              </div>
+            </form>
+
+            <form action="/{{id}}?_method=delete" method="POST" class="hide del-form">
+              <button type="submit" class="btn del-btn"><i class="fa fa-trash"></i></button>
+            </form>
+          </div>
+        {{/each}}
+      </ul>
+
+      <div class="tools">
+        <button class="add-item">Add an item...</button>
+
+        <form action="/" method="POST" class="hide">
+          <input type="hidden" name="listId" value="{{id}}">
+          <textarea name="task" placeholder="Add item" class="item-to-add" warp="soft" autofocus></textarea>
+          <div class="add-form-btns">
+            <button type="submit" class="add-btn btn">Add</button>
+            <button class="exit-btn" id="exit-add-form"><i class="fa fa-times"></i></button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-{{/each}}
+  {{/each}}
+</div>

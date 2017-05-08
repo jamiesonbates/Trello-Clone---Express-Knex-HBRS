@@ -23,11 +23,32 @@ header h1 {
   color: #E8EDE2;
 }
 
+.new-list {
+  margin: 10px;
+  margin-bottom: 20px;
+}
+
+.new-list form input {
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 3px;
+  border: none;
+}
+
+.new-list form input:focus {
+  outline: none;
+}
+
 main {
   display: flex;
+  flex-direction: column;
   padding: 25px;
   background-color: #E89847;
   flex: 1;
+}
+
+.all-lists {
+  display: flex;
 }
 
 .list {
@@ -39,9 +60,15 @@ main {
   box-sizing: border-box;
 }
 
-.list h2 {
-  margin: 0;
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   padding: 10px;
+}
+
+.list-header h2 {
+  margin: 0;
 }
 
 ul {
@@ -222,7 +249,7 @@ ul h2 {
   padding: 5px;
 }
 
-.add-btn {
+.add-btn, .list-btn {
   font-size: 25px;
   padding: 5px 15px;
   box-sizing: border-box;
@@ -230,7 +257,7 @@ ul h2 {
   color: white;
 }
 
-.add-btn:hover {
+.add-btn:hover, .list-btn:hover {
   background-color: #4C8F38;
 }
 
